@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cat's blog</title>
-</head>
-<body>
-        <div>
-            <h1><a href="/">Cat Blog</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
+{% block content %}
+    {% for post in posts %}
         <div>
-            {% for post in posts %}
-            <div>
-            <h3><a href="#">{{ post.title }}</a></h3>
-                <p>{{ post.text|linebreaksbr }}</p>
-            <p>i pawblish on {{ post.published_date }}</p>
-            </div>
-            {% endfor %}
+            <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+            <p class="post">{{ post.text|linebreaksbr }}</p>
+            <p id="pawblish"><i>i pawblish on {{ post.published_date }}</i></p>
         </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
